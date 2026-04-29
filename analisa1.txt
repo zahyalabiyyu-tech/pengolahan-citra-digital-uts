@@ -1,0 +1,84 @@
+ANALISA SOAL UTS PENGOLAHAN CITRA DIGITAL
+
+========================================
+SOAL 1
+======
+
+1. Perbedaan Persebaran Nilai Keabuan
+
+Pada citra asli, distribusi nilai keabuan mengikuti kondisi asli gambar tanpa manipulasi. Histogram menunjukkan sebaran intensitas normal.
+
+Pada citra negatif, nilai keabuan mengalami inversi dengan rumus G = 255 - F. Akibatnya, histogram citra negatif merupakan kebalikan dari histogram citra asli. Piksel terang menjadi gelap, dan piksel gelap menjadi terang.
+
+Pada citra logaritmik, terjadi peningkatan kontras terutama pada area gelap. Transformasi logaritmik memperluas nilai piksel rendah dan memampatkan nilai piksel tinggi. Histogram cenderung bergeser ke kanan (nilai lebih tinggi), sehingga detail pada area gelap menjadi lebih terlihat.
+
+2. Kapan Transformasi Logaritmik Lebih Bermanfaat
+
+Transformasi logaritmik lebih bermanfaat pada kondisi:
+
+* Citra memiliki banyak detail pada area gelap
+* Rentang intensitas (dynamic range) tinggi
+* Digunakan pada citra medis atau citra astronomi
+
+Sedangkan transformasi negatif lebih cocok digunakan untuk:
+
+* Membalik kontras citra
+* Aplikasi seperti citra X-ray
+
+========================================
+SOAL 2
+======
+
+1. Perbandingan Visual dan Nilai Rata-rata
+
+Low Pass Filter (LPF):
+LPF menghasilkan efek blur atau penghalusan pada citra. Noise berkurang dan detail halus menghilang. Nilai rata-rata piksel cenderung tetap atau sedikit berubah karena smoothing.
+
+High Pass Filter (HPF):
+HPF menonjolkan tepi dan perubahan intensitas yang tajam. Banyak bagian citra menjadi gelap kecuali area tepi. Nilai rata-rata biasanya menurun karena dominasi nilai rendah.
+
+Band Pass Filter (BPF):
+BPF atau sharpening meningkatkan ketajaman citra dengan memperjelas detail. Kontras meningkat dan objek terlihat lebih jelas. Nilai rata-rata bisa sedikit meningkat.
+
+2. Hubungan Domain Spasial dan Domain Frekuensi
+
+Low Pass Filter:
+Dalam domain spasial, LPF bekerja dengan meratakan nilai piksel sekitar. Dalam domain frekuensi, LPF melewatkan frekuensi rendah dan meredam frekuensi tinggi.
+
+High Pass Filter:
+Dalam domain spasial, HPF menonjolkan perubahan intensitas (tepi). Dalam domain frekuensi, HPF melewatkan frekuensi tinggi dan meredam frekuensi rendah.
+
+Band Pass Filter:
+Merupakan kombinasi antara LPF dan HPF. Dalam domain frekuensi, BPF melewatkan rentang frekuensi tertentu yang mengandung informasi penting.
+
+========================================
+SOAL 3
+======
+
+Diketahui citra:
+100 90 80
+60  50 40
+30  20 10
+
+Kernel HPF:
+-1 -1 -1
+-1  8 -1
+-1 -1 -1
+
+Perhitungan konvolusi pada titik tengah:
+
+= (100×-1) + (90×-1) + (80×-1)
+
+* (60×-1) + (50×8) + (40×-1)
+* (30×-1) + (20×-1) + (10×-1)
+
+= -100 -90 -80 -60 +400 -40 -30 -20 -10
+= -30
+
+Hasil akhir konvolusi adalah -30.
+
+Pada implementasi citra digital, nilai negatif biasanya akan di-clipping menjadi 0.
+
+========================================
+SELESAI
+=======
